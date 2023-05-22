@@ -1,8 +1,10 @@
 package pro.sky.java.course2.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course2.Employees;
 import pro.sky.java.course2.exception.EmployeeAlreadyAddedException;
+import pro.sky.java.course2.exception.EmployeeIllegalArgument;
 import pro.sky.java.course2.exception.EmployeeNotFoundException;
 
 import java.util.*;
@@ -13,9 +15,13 @@ public class EmployeesServiceImpl implements EmployeesService {
 
     @Override
     public void addEmployee(String firstName, String lastName, int department, double salary) {
-        if (firstName == null || lastName == null) {
-            throw new IllegalArgumentException("Invalid arguments");
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+            throw new EmployeeIllegalArgument();
         }
+        firstName = StringUtils.lowerCase(firstName);
+        firstName = StringUtils.capitalize(firstName);
+        lastName = StringUtils.lowerCase(lastName);
+        lastName = StringUtils.capitalize(lastName);
         Employees employee = new Employees(firstName, lastName, department, salary);
         if (employees.containsKey(firstName + lastName)) {
             throw new EmployeeAlreadyAddedException();
@@ -25,7 +31,7 @@ public class EmployeesServiceImpl implements EmployeesService {
 
     @Override
     public void deleteEmployee(String firstName, String lastName) {
-        if (firstName == null || lastName == null) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
             throw new IllegalArgumentException("Invalid arguments");
         }
         if (!employees.containsKey(firstName + lastName)) {
@@ -36,7 +42,7 @@ public class EmployeesServiceImpl implements EmployeesService {
 
     @Override
     public Employees findEmployee(String firstName, String lastName) {
-        if (firstName == null || lastName == null) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
             throw new IllegalArgumentException("Invalid arguments");
         }
         if (!employees.containsKey(firstName + lastName)) {
