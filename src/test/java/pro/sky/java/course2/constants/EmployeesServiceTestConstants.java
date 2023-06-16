@@ -14,6 +14,7 @@ public class EmployeesServiceTestConstants {
     public static final String LASTNAME = "Drago";
     public static final int DEPARTMENT = 777;
     public static final int SALARY = 1000000;
+    public static int EMPTY_PARAMETER;
 
     public static final Employees employeeMinSalary = new Employees("Valya", "Pupkina", 7, 5000);
     public static final Employees employeeMaxSalary = new Employees("Vasya", "Pupkin", 7, 7000);

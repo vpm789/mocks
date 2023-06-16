@@ -6,8 +6,7 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pro.sky.java.course2.Employees;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static pro.sky.java.course2.constants.EmployeesServiceTestConstants.*;
 
@@ -29,4 +28,9 @@ public class DepartmentServiceTest {
         assertEquals(GET_EMPLOYEES, out.getEmployees());
     }
 
+    @Test
+    public void shouldThrowExceptionWhenParameterIsEmpty() {
+        assertThrows(RuntimeException.class, () -> out.getEmployeeMinSalaryDepart(EMPTY_PARAMETER));
+        assertThrows(RuntimeException.class, () -> out.getEmployeeMaxSalaryDepart(EMPTY_PARAMETER));
+    }
 }
