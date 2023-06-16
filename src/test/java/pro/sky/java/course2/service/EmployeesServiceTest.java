@@ -15,7 +15,8 @@ public class EmployeesServiceTest {
 
     @Test
     public void shouldReturnErrorWhenAddIsIncorrect() {
-        out.employees.put("Vasya" + "Pupkin", new Employees("Vasya", "Pupkin", 7, 7000));
+        Employees employee = new Employees("Vasya", "Pupkin", 7, 7000);
+        out.employees.put("Vasya" + "Pupkin", employee);
         out.addEmployee(FIRSTNAME, LASTNAME, DEPARTMENT, SALARY);
         assertTrue(out.employees.containsKey(FIRSTNAME + LASTNAME));
     }
