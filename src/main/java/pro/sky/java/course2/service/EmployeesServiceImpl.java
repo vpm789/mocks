@@ -18,10 +18,6 @@ public class EmployeesServiceImpl implements EmployeesService {
         if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
             throw new EmployeeIllegalArgument();
         }
-        firstName = StringUtils.lowerCase(firstName);
-        firstName = StringUtils.capitalize(firstName);
-        lastName = StringUtils.lowerCase(lastName);
-        lastName = StringUtils.capitalize(lastName);
         Employees employee = new Employees(firstName, lastName, department, salary);
         if (employees.containsKey(firstName + lastName)) {
             throw new EmployeeAlreadyAddedException();

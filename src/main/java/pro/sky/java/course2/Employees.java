@@ -1,5 +1,7 @@
 package pro.sky.java.course2;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employees {
@@ -9,8 +11,8 @@ public class Employees {
     private double salary;
 
     public Employees(String firstName, String lastName, int department, double salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(StringUtils.lowerCase(firstName));
+        this.lastName = StringUtils.capitalize(StringUtils.lowerCase(lastName));
         this.department = department;
         this.salary = salary;
     }
